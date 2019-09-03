@@ -1,0 +1,15 @@
+.scroll-bar{
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  width: 98%;
+  height: 5px;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 3px #111;
+  background-color: #eee;
+}
+
+.filled{
+  background-image: linear-gradient(to right, darkblue, blue);
+  height: 100%;
+}
