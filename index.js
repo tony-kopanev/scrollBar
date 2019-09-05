@@ -15,18 +15,29 @@ class ScrollBar {
     this.instance.innerHTML = '<div class="filled"></div>';
     this.instance.className = 'scroll-bar';
 
-    window.addEventListener('scroll', () =>{
+    const scrollHandler = () => {
       const filled = this.instance.firstElementChild;
       const html = document.documentElement;
       const screenSize = html.clientHeight
       const fullHight = html.scrollHeight - screenSize;
       const scrolled = html.scrollTop;
-      //const width = scrolled / (fullHight / 100);
-      // style="width: 74.7671%;"
       const width = scrolled * 100 / fullHight;
 
       filled.style.width = `${width}%`;
-    })
+    }
+
+    const scrollClickHandler = event => {
+      const html = document.documentElement;
+      const instWidth = this.instance.clientWidth;
+      const eventCoords = event.offsetX;
+      const precent = eventCoords * 100 / instWidth;
+      const height = (html.scrollHeight - html.clientHeight) * precent / 100;
+
+      html.scrollTop = height;
+    } 
+
+    window.addEventListener('scroll', scrollHandler);
+    this.instance.addEventListener('click', scrollClickHandler);
   }
 
   render(){
